@@ -70,32 +70,115 @@ export default function WeddingInvitation() {
     <main className="min-h-screen bg-[#FDFBF7] text-[#4A4A4A] font-sans selection:bg-[#D4AF37] selection:text-white relative overflow-x-hidden">
       <audio ref={audioRef} src="/audio/Beautiful In White (Saxophone Cover by Dori Wirawan) [JmIUdR_fob0].mp3" loop />
 
-      {/* Splash Cover Overlay with Framer Motion */}
+      {/* Floating & Rotating Ornaments: Butterflies, Leaves, Sparkles, Floral */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+        <motion.div
+          animate={{ rotate: [0, 15, -15, 0], y: [0, -25, 0], x: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-16 left-8 text-[#D4AF37]/30 text-3xl md:text-5xl"
+        >
+          🦋
+        </motion.div>
+        <motion.div
+          animate={{ rotate: [0, -20, 20, 0], y: [0, 30, 0], x: [0, -15, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 right-12 text-[#D4AF37]/30 text-3xl md:text-5xl"
+        >
+          ✨
+        </motion.div>
+        <motion.div
+          animate={{ rotate: 360, y: [0, 20, 0] }}
+          transition={{ rotate: { duration: 25, repeat: Infinity, ease: "linear" }, y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}
+          className="absolute top-1/2 left-6 text-[#D4AF37]/25 text-4xl md:text-6xl"
+        >
+          🍃
+        </motion.div>
+        <motion.div
+          animate={{ rotate: [0, 25, -25, 0], y: [0, -20, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/3 right-10 text-[#D4AF37]/30 text-3xl md:text-5xl"
+        >
+          🦋
+        </motion.div>
+        <motion.div
+          animate={{ rotate: -360, y: [0, -25, 0] }}
+          transition={{ rotate: { duration: 22, repeat: Infinity, ease: "linear" }, y: { duration: 4.5, repeat: Infinity, ease: "easeInOut" } }}
+          className="absolute bottom-20 left-12 text-[#D4AF37]/25 text-4xl md:text-6xl"
+        >
+          ✨
+        </motion.div>
+      </div>
+
+      {/* Splash Cover Overlay */}
       <AnimatePresence>
         {!isOpen && (
           <motion.div
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0, y: '-100vh', transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }}
+            exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)', transition: { duration: 1, ease: [0.76, 0, 0.24, 1] } }}
             className="fixed inset-0 z-50 bg-neutral-900 text-white flex flex-col items-center justify-center p-6 text-center bg-[url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"
           >
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-xs"></div>
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0 bg-black backdrop-blur-xs"
+            ></motion.div>
+
+            {/* Corner floating ornaments on cover */}
+            <motion.div
+              animate={{ y: [0, -10, 0], rotate: [0, 10, 0] }}
+              transition={{ duration: 5, repeat: Infinity }}
+              className="absolute top-8 left-8 text-[#E5C158]/50 text-3xl"
+            >
+              🦋
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, 10, 0], rotate: [0, -10, 0] }}
+              transition={{ duration: 5, repeat: Infinity }}
+              className="absolute bottom-8 right-8 text-[#E5C158]/50 text-3xl"
+            >
+              ✨
+            </motion.div>
+
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
               className="relative z-10 max-w-xl mx-auto space-y-6"
             >
-              <span className="text-xs uppercase tracking-[0.3em] text-[#E5C158] font-medium block">The Wedding Of</span>
-              <h1 className="text-5xl md:text-7xl font-serif tracking-wide text-white">Aiden & Clara</h1>
-              <p className="text-sm md:text-base text-neutral-300 font-light max-w-md mx-auto">
+              <motion.span
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="text-xs uppercase tracking-[0.3em] text-[#E5C158] font-medium block"
+              >
+                The Wedding Of
+              </motion.span>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="text-5xl md:text-7xl font-serif tracking-wide text-white"
+              >
+                Aiden & Clara
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.9, duration: 0.8 }}
+                className="text-sm md:text-base text-neutral-300 font-light max-w-md mx-auto"
+              >
                 Kepada Bapak/Ibu/Saudara/i, kami mengundang Anda untuk merayakan hari istimewa kami.
-              </p>
+              </motion.p>
               <div className="pt-4">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.1, duration: 0.5 }}
+                  whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleOpenInvitation}
-                  className="inline-flex items-center gap-2 bg-[#D4AF37] hover:bg-[#C59B27] text-white font-medium px-8 py-3 rounded-full shadow-lg transition-colors"
+                  className="inline-flex items-center gap-2 bg-[#D4AF37] hover:bg-[#C59B27] text-white font-medium px-8 py-3 rounded-full shadow-lg transition-colors cursor-pointer"
                 >
                   <i className="bi bi-envelope-open-fill"></i> Buka Undangan
                 </motion.button>
@@ -108,37 +191,40 @@ export default function WeddingInvitation() {
       {/* Floating Audio Control Button */}
       {isOpen && (
         <motion.button
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          whileHover={{ scale: 1.1 }}
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          whileHover={{ scale: 1.15, rotate: 10 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleAudio}
-          className="fixed bottom-6 right-6 z-40 bg-white/95 backdrop-blur-md border border-neutral-200 text-[#D4AF37] p-3 rounded-full shadow-xl flex items-center justify-center"
+          className="fixed bottom-6 right-6 z-40 bg-white/95 backdrop-blur-md border border-neutral-200 text-[#D4AF37] p-3.5 rounded-full shadow-2xl flex items-center justify-center cursor-pointer"
           aria-label="Toggle Audio"
         >
-          <i className={`bi ${isPlaying ? 'bi-volume-up-fill animate-pulse' : 'bi-volume-mute-fill'} text-xl`}></i>
+          <i className={`bi ${isPlaying ? 'bi-volume-up-fill animate-bounce' : 'bi-volume-mute-fill'} text-2xl`}></i>
         </motion.button>
       )}
 
       {/* Navigation */}
       <motion.nav
-        initial={{ y: -50, opacity: 0 }}
+        initial={{ y: -70, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-neutral-100 shadow-xs"
+        transition={{ duration: 0.8 }}
+        className="sticky top-0 z-30 bg-white/85 backdrop-blur-md border-b border-neutral-100 shadow-xs"
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#home" className="font-serif text-2xl font-bold tracking-wider text-[#2C2C2C]">
+          <a href="#home" className="font-serif text-2xl font-bold tracking-wider text-[#2C2C2C] hover:text-[#D4AF37] transition">
             A & C
           </a>
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-600">
-            <a href="#home" className="hover:text-[#D4AF37] transition">Beranda</a>
-            <a href="#couple" className="hover:text-[#D4AF37] transition">Mempelai</a>
-            <a href="#event" className="hover:text-[#D4AF37] transition">Acara</a>
-            <a href="#story" className="hover:text-[#D4AF37] transition">Cerita</a>
-            <a href="#gallery" className="hover:text-[#D4AF37] transition">Galeri</a>
-            <a href="#rsvp" className="hover:text-[#D4AF37] transition">RSVP</a>
-            <a href="#gifts" className="hover:text-[#D4AF37] transition">Kado</a>
+            {['Beranda', 'Mempelai', 'Acara', 'Cerita', 'Galeri', 'RSVP', 'Kado'].map((item) => (
+              <motion.a
+                key={item}
+                whileHover={{ scale: 1.05, color: '#D4AF37' }}
+                href={`#${item === 'Beranda' ? 'home' : item === 'Mempelai' ? 'couple' : item === 'Acara' ? 'event' : item === 'Cerita' ? 'story' : item === 'Galeri' ? 'gallery' : item === 'RSVP' ? 'rsvp' : 'gifts'}`}
+                className="transition"
+              >
+                {item}
+              </motion.a>
+            ))}
           </div>
         </div>
       </motion.nav>
@@ -147,41 +233,69 @@ export default function WeddingInvitation() {
       <section id="home" className="relative min-h-[90vh] flex items-center justify-center text-center px-6 bg-[url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center">
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-[#FDFBF7]"></div>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="relative z-10 max-w-2xl mx-auto py-20 text-white space-y-6"
         >
-          <span className="text-sm uppercase tracking-[0.25em] text-[#E5C158] font-medium">The Wedding Celebration</span>
-          <h1 className="text-6xl md:text-8xl font-serif tracking-wide drop-shadow-md">Aiden & Clara</h1>
-          <p className="text-lg md:text-xl font-light tracking-wide text-neutral-200">25 November 2026 — The Ritz-Carlton, Jakarta</p>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="text-sm uppercase tracking-[0.25em] text-[#E5C158] font-medium block"
+          >
+            The Wedding Celebration
+          </motion.span>
+          <motion.h1
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-6xl md:text-8xl font-serif tracking-wide drop-shadow-md"
+          >
+            Aiden & Clara
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg md:text-xl font-light tracking-wide text-neutral-200"
+          >
+            25 November 2026 — The Ritz-Carlton, Jakarta
+          </motion.p>
           
-          <div className="grid grid-cols-4 gap-3 max-w-md mx-auto pt-6">
-            {['Hari', 'Jam', 'Menit', 'Detik'].map((label, idx) => {
-              const val = [timeLeft.days, timeLeft.hours, timeLeft.minutes, timeLeft.seconds][idx];
-              return (
-                <motion.div
-                  key={label}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white/10 backdrop-blur-md p-3 rounded-lg border border-white/20"
-                >
-                  <span className="block text-2xl md:text-3xl font-bold">{val}</span>
-                  <span className="text-xs uppercase tracking-wider text-neutral-300">{label}</span>
-                </motion.div>
-              );
-            })}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="grid grid-cols-4 gap-3 max-w-md mx-auto pt-6"
+          >
+            {[
+              { label: 'Hari', val: timeLeft.days },
+              { label: 'Jam', val: timeLeft.hours },
+              { label: 'Menit', val: timeLeft.minutes },
+              { label: 'Detik', val: timeLeft.seconds },
+            ].map((item) => (
+              <motion.div
+                key={item.label}
+                whileHover={{ scale: 1.08 }}
+                className="bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20 transition-colors"
+              >
+                <span className="block text-2xl md:text-3xl font-bold">{item.val}</span>
+                <span className="text-xs uppercase tracking-wider text-neutral-300">{item.label}</span>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </section>
 
       {/* Couple Section */}
-      <section id="couple" className="py-24 px-6 max-w-5xl mx-auto">
+      <section id="couple" className="py-24 px-6 max-w-5xl mx-auto overflow-hidden relative">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="text-center space-y-4 mb-16"
         >
           <span className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-semibold">Bahagia Bersama</span>
@@ -193,20 +307,25 @@ export default function WeddingInvitation() {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center space-y-4 bg-white p-8 rounded-2xl shadow-sm border border-neutral-100"
+            whileHover={{ y: -8 }}
+            className="text-center space-y-4 bg-white p-8 rounded-3xl shadow-lg border border-neutral-100 transition-all"
           >
-            <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden shadow-md border-4 border-[#FDFBF7]">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              className="relative w-48 h-48 mx-auto rounded-full overflow-hidden shadow-md border-4 border-[#FDFBF7]"
+            >
               <Image
                 src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80"
                 alt="Aiden Vance"
                 fill
-                className="object-cover hover:scale-110 transition duration-500"
+                className="object-cover hover:scale-110 transition duration-700"
               />
-            </div>
+            </motion.div>
             <h3 className="text-3xl font-serif text-[#2C2C2C]">Aiden Vance, B.Eng</h3>
             <p className="text-sm text-[#D4AF37] font-medium">Putra Kedua dari Bpk. Arthur Vance & Ibu Elizabeth Vance</p>
             <p className="text-xs text-neutral-500 leading-relaxed max-w-sm mx-auto">
@@ -215,20 +334,25 @@ export default function WeddingInvitation() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center space-y-4 bg-white p-8 rounded-2xl shadow-sm border border-neutral-100"
+            whileHover={{ y: -8 }}
+            className="text-center space-y-4 bg-white p-8 rounded-3xl shadow-lg border border-neutral-100 transition-all"
           >
-            <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden shadow-md border-4 border-[#FDFBF7]">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              className="relative w-48 h-48 mx-auto rounded-full overflow-hidden shadow-md border-4 border-[#FDFBF7]"
+            >
               <Image
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
                 alt="Clara Montgomery"
                 fill
-                className="object-cover hover:scale-110 transition duration-500"
+                className="object-cover hover:scale-110 transition duration-700"
               />
-            </div>
+            </motion.div>
             <h3 className="text-3xl font-serif text-[#2C2C2C]">Clara Montgomery, M.Sc</h3>
             <p className="text-sm text-[#D4AF37] font-medium">Putri Pertama dari Bpk. Charles Montgomery & Ibu Diana Montgomery</p>
             <p className="text-xs text-neutral-500 leading-relaxed max-w-sm mx-auto">
@@ -239,10 +363,10 @@ export default function WeddingInvitation() {
       </section>
 
       {/* Event Details Section */}
-      <section id="event" className="py-24 bg-neutral-900 text-white px-6">
+      <section id="event" className="py-24 bg-neutral-900 text-white px-6 relative">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto text-center space-y-16"
@@ -255,22 +379,24 @@ export default function WeddingInvitation() {
 
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
-              whileHover={{ y: -5 }}
-              className="bg-neutral-800/80 backdrop-blur-md p-8 rounded-2xl border border-neutral-700/50 space-y-4"
+              whileHover={{ scale: 1.03, y: -5 }}
+              transition={{ duration: 0.3 }}
+              className="bg-neutral-800/90 backdrop-blur-md p-8 rounded-3xl border border-neutral-700/60 shadow-xl space-y-4 text-left"
             >
               <div className="text-[#E5C158] text-3xl"><i className="bi bi-heart"></i></div>
-              <h3 className="text-2xl font-serif">Akad Nikah</h3>
+              <h3 className="text-2xl font-serif text-white">Akad Nikah</h3>
               <p className="text-sm text-neutral-300">Rabu, 25 November 2026</p>
               <p className="text-sm text-neutral-300">Pukul 08.00 - 10.00 WIB</p>
               <p className="text-xs text-neutral-400 pt-2 border-t border-neutral-700">The Ritz-Carlton Jakarta, Pacific Place</p>
             </motion.div>
 
             <motion.div
-              whileHover={{ y: -5 }}
-              className="bg-neutral-800/80 backdrop-blur-md p-8 rounded-2xl border border-neutral-700/50 space-y-4"
+              whileHover={{ scale: 1.03, y: -5 }}
+              transition={{ duration: 0.3 }}
+              className="bg-neutral-800/90 backdrop-blur-md p-8 rounded-3xl border border-neutral-700/60 shadow-xl space-y-4 text-left"
             >
               <div className="text-[#E5C158] text-3xl"><i className="bi bi-glass-champagne"></i></div>
-              <h3 className="text-2xl font-serif">Resepsi Pernikahan</h3>
+              <h3 className="text-2xl font-serif text-white">Resepsi Pernikahan</h3>
               <p className="text-sm text-neutral-300">Rabu, 25 November 2026</p>
               <p className="text-sm text-neutral-300">Pukul 11.00 - 14.00 WIB</p>
               <p className="text-xs text-neutral-400 pt-2 border-t border-neutral-700">The Ritz-Carlton Jakarta, Grand Ballroom</p>
@@ -282,9 +408,10 @@ export default function WeddingInvitation() {
       {/* Love Story */}
       <section id="story" className="py-24 px-6 max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="text-center space-y-4 mb-16"
         >
           <span className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-semibold">Perjalanan Cinta</span>
@@ -292,50 +419,26 @@ export default function WeddingInvitation() {
         </motion.div>
 
         <div className="space-y-12 border-l-2 border-[#D4AF37]/30 pl-6 ml-2 md:ml-32">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative space-y-2"
-          >
-            <span className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-[#D4AF37] ring-4 ring-[#FDFBF7]"></span>
-            <span className="text-xs font-semibold text-[#D4AF37] uppercase tracking-wider">12 Oktober 2020</span>
-            <h3 className="text-xl font-serif text-[#2C2C2C]">Pertemuan Pertama</h3>
-            <p className="text-sm text-neutral-600 leading-relaxed">
-              Kami pertama kali berjumpa di sebuah galeri seni di kawasan Menteng. Percakapan singkat tentang lukisan Impresionis berlanjut menjadi obrolan panjang yang tak berkesudahan.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative space-y-2"
-          >
-            <span className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-[#D4AF37] ring-4 ring-[#FDFBF7]"></span>
-            <span className="text-xs font-semibold text-[#D4AF37] uppercase tracking-wider">15 Agustus 2023</span>
-            <h3 className="text-xl font-serif text-[#2C2C2C]">Komitmen Bersama</h3>
-            <p className="text-sm text-neutral-600 leading-relaxed">
-              Setelah melewati berbagai lika-liku studi dan karier di kota berbeda, kami memutuskan untuk melangkah bersama dalam satu visi dan tujuan hidup.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="relative space-y-2"
-          >
-            <span className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-[#D4AF37] ring-4 ring-[#FDFBF7]"></span>
-            <span className="text-xs font-semibold text-[#D4AF37] uppercase tracking-wider">14 Februari 2026</span>
-            <h3 className="text-xl font-serif text-[#2C2C2C]">Lamaran Resmi</h3>
-            <p className="text-sm text-neutral-600 leading-relaxed">
-              Disaksikan oleh keluarga tercinta di Bali, Aiden mengutarakan niat suci untuk meminang Clara. Dan jawaban 'ya' menjadi awal babak baru hidup kami.
-            </p>
-          </motion.div>
+          {[
+            { date: '12 Oktober 2020', title: 'Pertemuan Pertama', desc: 'Kami pertama kali berjumpa di sebuah galeri seni di kawasan Menteng. Percakapan singkat tentang lukisan Impresionis berlanjut menjadi obrolan panjang yang tak berkesudahan.' },
+            { date: '15 Agustus 2023', title: 'Komitmen Bersama', desc: 'Setelah melewati berbagai lika-liku studi dan karier di kota berbeda, kami memutuskan untuk melangkah bersama dalam satu visi dan tujuan hidup.' },
+            { date: '14 Februari 2026', title: 'Lamaran Resmi', desc: 'Disaksikan oleh keluarga tercinta di Bali, Aiden mengutarakan niat suci untuk meminang Clara. Dan jawaban \'ya\' menjadi awal babak baru hidup kami.' }
+          ].map((item, idx) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.2 }}
+              whileHover={{ x: 6 }}
+              className="relative space-y-2 bg-white/60 backdrop-blur-xs p-6 rounded-2xl border border-neutral-100 shadow-xs transition-all"
+            >
+              <span className="absolute -left-[39px] top-6 w-4 h-4 rounded-full bg-[#D4AF37] ring-4 ring-[#FDFBF7]"></span>
+              <span className="text-xs font-semibold text-[#D4AF37] uppercase tracking-wider">{item.date}</span>
+              <h3 className="text-xl font-serif text-[#2C2C2C]">{item.title}</h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">{item.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -343,9 +446,10 @@ export default function WeddingInvitation() {
       <section id="gallery" className="py-24 bg-white px-6">
         <div className="max-w-6xl mx-auto space-y-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="text-center space-y-4"
           >
             <span className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-semibold">Momen Indah</span>
@@ -361,11 +465,14 @@ export default function WeddingInvitation() {
             ].map((src, i) => (
               <motion.div
                 key={i}
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
-                className="relative h-64 md:h-80 rounded-xl overflow-hidden shadow-xs"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                whileHover={{ scale: 1.05 }}
+                className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-md cursor-pointer"
               >
-                <Image src={src} alt={`Gallery ${i+1}`} fill className="object-cover" />
+                <Image src={src} alt={`Gallery ${i+1}`} fill className="object-cover hover:scale-110 transition duration-700" />
               </motion.div>
             ))}
           </div>
@@ -375,9 +482,10 @@ export default function WeddingInvitation() {
       {/* RSVP Section */}
       <section id="rsvp" className="py-24 px-6 max-w-3xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="text-center space-y-4 mb-12"
         >
           <span className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-semibold">Konfirmasi Kehadiran</span>
@@ -385,12 +493,12 @@ export default function WeddingInvitation() {
         </motion.div>
 
         <motion.form
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           onSubmit={handleRsvpSubmit}
-          className="bg-white p-8 rounded-2xl shadow-sm border border-neutral-100 space-y-6"
+          className="bg-white p-8 rounded-3xl shadow-lg border border-neutral-100 space-y-6"
         >
           <div>
             <label className="block text-xs uppercase tracking-wider font-semibold text-neutral-600 mb-2">Nama Lengkap</label>
@@ -400,7 +508,7 @@ export default function WeddingInvitation() {
               onChange={(e) => setGuestName(e.target.value)}
               required
               placeholder="Masukkan nama Anda"
-              className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:border-[#D4AF37] text-sm"
+              className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:border-[#D4AF37] text-sm transition"
             />
           </div>
 
@@ -409,7 +517,7 @@ export default function WeddingInvitation() {
             <select
               value={guestAttendance}
               onChange={(e) => setGuestAttendance(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:border-[#D4AF37] text-sm bg-white"
+              className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:border-[#D4AF37] text-sm bg-white transition"
             >
               <option value="Hadir">Ya, Saya akan hadir</option>
               <option value="Tidak Hadir">Maaf, tidak dapat hadir</option>
@@ -423,15 +531,15 @@ export default function WeddingInvitation() {
               onChange={(e) => setGuestMessage(e.target.value)}
               rows={4}
               placeholder="Tuliskan ucapan atau doa untuk kedua mempelai"
-              className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:border-[#D4AF37] text-sm"
+              className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:border-[#D4AF37] text-sm transition"
             ></textarea>
           </div>
 
           <motion.button
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.99 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full bg-[#D4AF37] hover:bg-[#C59B27] text-white font-medium py-3 rounded-lg shadow-md"
+            className="w-full bg-[#D4AF37] hover:bg-[#C59B27] text-white font-medium py-3 rounded-xl shadow-md transition-colors cursor-pointer"
           >
             Kirim Konfirmasi
           </motion.button>
@@ -442,14 +550,15 @@ export default function WeddingInvitation() {
           <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
             {rsvpList.map((item, index) => (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 key={index}
-                className="bg-white p-5 rounded-xl border border-neutral-100 shadow-2xs space-y-2"
+                className="bg-white p-5 rounded-2xl border border-neutral-100 shadow-xs space-y-2"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-sm text-[#2C2C2C]">{item.name}</span>
-                  <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full ${item.status === 'Hadir' ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
+                  <span className={`text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full ${item.status === 'Hadir' ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
                     {item.status}
                   </span>
                 </div>
@@ -463,18 +572,25 @@ export default function WeddingInvitation() {
       {/* Gifts Section */}
       <section id="gifts" className="py-24 bg-white px-6">
         <div className="max-w-4xl mx-auto text-center space-y-12">
-          <div className="space-y-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-4"
+          >
             <span className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-semibold">Tanda Kasih</span>
             <h2 className="text-4xl md:text-5xl font-serif text-[#2C2C2C]">Kado Pernikahan</h2>
             <p className="text-neutral-500 text-sm md:text-base max-w-md mx-auto">
               Doa restu Anda merupakan karunia terindah bagi kami. Namun jika ingin memberikan tanda kasih, dapat melalui:
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="bg-[#FDFBF7] p-6 rounded-2xl border border-neutral-200/60 shadow-2xs space-y-3"
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ duration: 0.3 }}
+              className="bg-[#FDFBF7] p-6 rounded-2xl border border-neutral-200/60 shadow-md space-y-3"
             >
               <span className="font-bold text-lg tracking-wide text-[#2C2C2C]">BCA</span>
               <p className="text-sm text-neutral-600 font-mono">1234 5678 90</p>
@@ -482,8 +598,9 @@ export default function WeddingInvitation() {
             </motion.div>
 
             <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="bg-[#FDFBF7] p-6 rounded-2xl border border-neutral-200/60 shadow-2xs space-y-3"
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ duration: 0.3 }}
+              className="bg-[#FDFBF7] p-6 rounded-2xl border border-neutral-200/60 shadow-md space-y-3"
             >
               <span className="font-bold text-lg tracking-wide text-[#2C2C2C]">Mandiri</span>
               <p className="text-sm text-neutral-600 font-mono">0987 6543 21</p>
