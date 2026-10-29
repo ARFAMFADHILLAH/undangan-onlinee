@@ -13,6 +13,23 @@ Undangan pernikahan digital modern dan elegan yang dibangun dengan **Next.js (Ap
 - **RSVP & Buku Tamu**: Formulir konfirmasi kehadiran beserta daftar ucapan dan doa dari tamu.
 - **Kado Pernikahan**: Informasi amplop digital / nomor rekening bank.
 
+## 📂 Struktur Folder Proyek
+```text
+undangan-onlinee/
+├── app/                  # Next.js App Router (Halaman & Layout)
+│   ├── globals.css       # Pengaturan Styling & Tailwind
+│   ├── layout.tsx        # Root Layout Aplikasi
+│   └── page.tsx          # Halaman Utama Undangan
+├── public/               # Aset Statis
+│   ├── audio/            # File Musik Latar (.mp3)
+│   └── img/              # Aset Gambar Pendukung
+├── .gitignore            # File yang diabaikan Git
+├── next.config.ts        # Konfigurasi Next.js
+├── package.json          # Daftar Dependensi & Skrip NPM
+├── README.md             # Dokumentasi Proyek
+└── tsconfig.json         # Konfigurasi TypeScript
+```
+
 ## 🚀 Memulai (Development)
 
 1. Clone repositori ini:
@@ -38,3 +55,7 @@ Undangan pernikahan digital modern dan elegan yang dibangun dengan **Next.js (Ap
 npm run build
 npm start
 ```
+
+## 📄 Hak Cipta (Copyright)
+© 2026 Aiden & Clara Wedding Invitation. Hak Cipta Dilindungi Undang-Undang. 
+Dibuat dengan penuh cinta untuk perayaan hari istimewa. Dilarang memperbanyak atau mendistribusikan ulang kode sumber tanpa izin tertulis.
